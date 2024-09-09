@@ -26,9 +26,10 @@ The project is structured as follows:
     cd <repository_directory>
     ```
 
-2. **Make your own compose**:
+2. **Make your own compose and requirements**:
     ```bash
     cp docker-compose.yaml.example docker-compose.yaml
+    cp requirements.txt.example requirements.txt
     ```
 
 3. **Build and start the application using Docker Compose**:
@@ -38,16 +39,6 @@ The project is structured as follows:
 
 4. **Access the FastAPI application**:
     The FastAPI application will be available at `http://localhost:8080`.
-
-## Requirements
-
-The `requirements.txt` file includes the following dependencies:
-
-```plaintext
-fastapi>=0.111.0
-pydantic>=2.7.0
-uvicorn>=0.29.0
-```
 
 ## Dockerfile
 
