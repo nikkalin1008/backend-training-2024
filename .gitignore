@@ -1,6 +1,7 @@
 venv
 .env
 app/*
+app
 docker-compose.yaml
 *.bak
 requirements.txt
