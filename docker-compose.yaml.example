@@ -1,47 +1,21 @@
 version: '3.9'
 
 services:
-  postgres:
-    image: postgres:13
-    container_name: sdc_postgres
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: fastapi
-    networks:
-      - intranet
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   mariadb:
     image: mariadb:10.6
-    container_name: sdc_mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
     networks:
       - intranet
+    ports:
+      - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
 
-  pgadmin4:
-    image: dpage/pgadmin4
-    container_name: sdc_pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=user@example.com
-      - PGADMIN_DEFAULT_PASSWORD=password
-    networks:
-      - intranet
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
-
   phpmyadmin:
     image: phpmyadmin
-    container_name: sdc_phpmyadmin
+    container_name: phpmyadmin_container
     restart: always
     environment:
       PMA_HOST: mariadb
@@ -55,12 +29,11 @@ services:
 
   app:
     build: ./
-    container_name: sdc_fastapi_app
-    restart: always
+    container_name: fastapi-app
     networks:
       - intranet
     volumes:
-      - ./app:/code/app
+      - ./app:/app
     ports:
       - "8080:8000"
 
@@ -69,5 +42,4 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_data:
   mariadb_data:

@@ -29,15 +29,21 @@ The project is structured as follows:
 2. **Make your own compose and requirements**:
     ```bash
     cp docker-compose.yaml.example docker-compose.yaml
-    cp requirements.txt.example requirements.txt
     ```
 
-3. **Build and start the application using Docker Compose**:
+3. **Make sure your requirements file and project with main.py are in the app direcotry**
+    ```bash
+    mkdir -p app
+    touch app/requirements.txt
+    touch app/main.py
+    ```
+
+4. **Build and start the application using Docker Compose**:
     ```bash
     docker-compose up --build -d
     ```
 
-4. **Access the FastAPI application**:
+5. **Access the FastAPI application**:
     The FastAPI application will be available at `http://localhost:8080`.
 
 ## Dockerfile
