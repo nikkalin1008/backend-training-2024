@@ -33,7 +33,7 @@ services:
     networks:
       - intranet
     volumes:
-      - ./app:/app
+      - ./app:/mnt/app
     ports:
       - "8080:8000"
 
