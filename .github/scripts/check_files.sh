@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Color settings
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Check if there is a parent commit (to avoid errors on the first commit)
 if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
   # If there is a parent commit, perform a diff comparison
@@ -16,9 +22,9 @@ echo "$MODIFIED_FILES"
 NON_MEMBER_FILES=$(echo "$MODIFIED_FILES" | grep -vE '^members/|^\.gitmodules$')
 
 if [ -n "$NON_MEMBER_FILES" ]; then
-  echo "Error: The following non-members/ files were modified (excluding .gitmodules):"
-  echo "$NON_MEMBER_FILES"
+  echo -e "${RED}Error: The following non-members/ files were modified (excluding .gitmodules):${NC}" >&2
+  echo -e "${YELLOW}$NON_MEMBER_FILES${NC}" >&2
   exit 1
 else
-  echo "Only members/ directory or .gitmodules was modified. Proceeding..."
+  echo -e "${GREEN}Only members/ directory or .gitmodules was modified. Proceeding...${NC}"
 fi

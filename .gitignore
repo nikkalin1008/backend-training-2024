@@ -1,7 +1,7 @@
 venv
 .env
-app/*
-app
 docker-compose.yaml
 *.bak
 requirements.txt
+__pycache__
+app
