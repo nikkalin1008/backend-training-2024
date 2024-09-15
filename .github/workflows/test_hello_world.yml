@@ -1,0 +1,68 @@
+name: Test Hello World
+
+on:
+  pull_request:
+    paths:
+      - 'members/**'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install fastapi pytest uvicorn
+
+      - name: Get list of changed submodules
+        id: changed_submodules
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pull_number = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner,
+              repo,
+              pull_number,
+            });
+            const changedSubmodules = files
+              .map(file => file.filename)
+              .filter(filename => filename.startsWith('members/'))
+              .map(filename => filename.split('/')[1])
+              .filter((value, index, self) => self.indexOf(value) === index);
+            core.setOutput('submodules', changedSubmodules.join(' '));
+
+      - name: Test submissions
+        if: steps.changed_submodules.outputs.submodules != ''
+        run: |
+          for submodule in ${{ steps.changed_submodules.outputs.submodules }}; do
+            echo "Testing $submodule"
+            cd members/$submodule
+            # Update submodules
+            git submodule update --init --recursive
+            # Install dependencies
+            if [ -f requirements.txt ]; then
+              pip install -r requirements.txt
+            fi
+            # Copy test script
+            cp ../../.github/scripts/test_hello_world.py .
+            pytest test_hello_world.py
+            cd ../../
+          done

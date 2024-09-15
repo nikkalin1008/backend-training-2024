@@ -1,10 +1,9 @@
 FROM python:3.10
-WORKDIR /tmp
+WORKDIR /mnt/app
 
-COPY ./app/requirements.txt /tmp/requirements.txt
+COPY ./app/requirements.txt ./requirements.txt
 
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-WORKDIR /mnt/app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
