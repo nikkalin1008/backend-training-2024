@@ -1,3 +1,6 @@
 [submodule "members/lkw50197"]
 	path = members/lkw50197
 	url = https://github.com/lkw50197/sdc-backend-2024.git
+[submodule "members/kdotwei"]
+	path = members/kdotwei
+	url = https://github.com/kdotwei/sdc-backend-training.git
