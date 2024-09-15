@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install global dependencies
         run: |
           pip install fastapi pytest uvicorn
 
@@ -49,20 +49,30 @@ jobs:
               .filter((value, index, self) => self.indexOf(value) === index);
             core.setOutput('submodules', changedSubmodules.join(' '));
 
-      - name: Test submissions
+      - name: Loop through submodules
         if: steps.changed_submodules.outputs.submodules != ''
         run: |
           for submodule in ${{ steps.changed_submodules.outputs.submodules }}; do
-            echo "Testing $submodule"
-            cd members/$submodule
-            # Update submodules
-            git submodule update --init --recursive
-            # Install dependencies
-            if [ -f requirements.txt ]; then
-              pip install -r requirements.txt
-            fi
-            # Copy test script
-            cp ../../.github/scripts/test_hello_world.py .
-            pytest test_hello_world.py
-            cd ../../
+            echo "Processing $submodule"
+            echo "::set-output name=current_submodule::$submodule"
+            # Execute the following steps for each submodule
           done
+
+      - name: Update submodule
+        run: |
+          cd members/${{ steps.changed_submodules.outputs.current_submodule }}
+          git submodule update --init --recursive
+
+      - name: Install submodule dependencies
+        run: |
+          cd members/${{ steps.changed_submodules.outputs.current_submodule }}
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Copy and run test script
+        run: |
+          cd members/${{ steps.changed_submodules.outputs.current_submodule }}
+          cp ../../.github/scripts/test_hello_world.py .
+          pytest test_hello_world.py
+          cd ../../
