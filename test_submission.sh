@@ -21,7 +21,3 @@ echo "Pytest"
 echo "$DIVIDER"
 docker exec -it fastapi_app pytest --tb=long
 echo "$DIVIDER"
-
-echo "$DIVIDER"
-echo "All tests passed successfully."
-echo "$DIVIDER"
