@@ -4,3 +4,6 @@
 [submodule "members/kdotwei"]
 	path = members/kdotwei
 	url = https://github.com/kdotwei/sdc-backend-training.git
+[submodule "members/ian60509"]
+	path = members/ian60509
+	url = https://github.com/ian60509/SDC-backend-training-submodule.git
