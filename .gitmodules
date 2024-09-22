@@ -13,3 +13,9 @@
 [submodule "members/YourFath3r"]
 	path = members/YourFath3r
 	url = https://github.com/YourFath3r/sdc-backend.git
+[submodule "members/111550175"]
+	path = members/111550175
+	url = https://github.com/111550175/sdc-backend-training.git
+[submodule "members/tiffanyfan1015"]
+	path = members/tiffanyfan1015
+	url = https://github.com/tiffanyfan1015/sdc-backend-training.git
