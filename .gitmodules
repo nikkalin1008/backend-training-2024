@@ -40,3 +40,6 @@
 [submodule "members/tiffanyfan1015"]
 	path = members/tiffanyfan1015
 	url = https://github.com/tiffanyfan1015/sdc-backend-training.git
+[submodule "members/imyungchu"]
+	path = members/imyungchu
+	url = https://github.com/imyungchu/sdc-backend.git
