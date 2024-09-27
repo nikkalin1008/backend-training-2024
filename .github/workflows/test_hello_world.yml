@@ -66,9 +66,7 @@ jobs:
         run: |
           submodule=${{ steps.changed_submodules.outputs.submodule }}
           cd members/$submodule
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
+          pip install -r requirements.txt
 
       - name: Test submodule
         if: steps.changed_submodules.outputs.submodule != ''
