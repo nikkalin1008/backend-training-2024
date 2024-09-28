@@ -49,6 +49,9 @@
 [submodule "members/imyungchu"]
 	path = members/imyungchu
 	url = https://github.com/imyungchu/sdc-backend.git
+[submodule "members/Hsiungg"]
+	path = members/Hsiungg
+	url = https://github.com/Hsiungg/backend_training.git
 [submodule "members/gigi-igig"]
 	path = members/gigi-igig
 	url = https://github.com/gigi-igig/sdc-backend-training.git
