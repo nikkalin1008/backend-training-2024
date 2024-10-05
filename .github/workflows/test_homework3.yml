@@ -74,5 +74,5 @@ jobs:
           submodule=${{ steps.changed_submodules.outputs.submodule }}
           cd members/$submodule
           cp ../../.github/scripts/test_homework3.py .
-          pytest test_update_item.py
+          pytest test_homework3.py
 
