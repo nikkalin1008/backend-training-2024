@@ -35,6 +35,7 @@ services:
     volumes:
       - ./app:/mnt/app
       - ./.github:/mnt/.github
+      - .:/mnt/root
     ports:
       - "8080:8000"
 
