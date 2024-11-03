@@ -1,4 +1,4 @@
-name: Test Hello World
+name: Homework 1 Test
 
 on:
   pull_request:
