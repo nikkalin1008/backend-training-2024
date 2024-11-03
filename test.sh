@@ -13,12 +13,17 @@ print_separator() {
 }
 
 print_separator "Check files change"
-./.github/scripts/check_files.sh
+sh ./.github/scripts/check_files.sh
 
 print_separator "Install requirements"
-docker exec -t -w "/mnt/app" fastapi_app pip install --quiet -r requirements.txt
+cd "/mnt/app"
+pip install --quiet --no-cache-dir -r requirements.txt
 
 print_separator "Run pytest"
-docker exec -t -w "/mnt" fastapi_app sh -c "rm -f /mnt/test*"
-docker exec -t -w "/mnt" fastapi_app cp -fr .github/scripts/* ./
-docker exec -t -w "/mnt" fastapi_app pytest
+cd /mnt
+rm -rf test
+mkdir test
+cp -fr .github/scripts/* ./test/
+cp -fr app/* ./test/
+cd /mnt/test
+pytest
