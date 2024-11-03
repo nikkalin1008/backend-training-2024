@@ -1,4 +1,4 @@
-name: Test Homework 2
+name: Test Homework 4
 
 on:
   pull_request:
@@ -73,6 +73,6 @@ jobs:
         run: |
           submodule=${{ steps.changed_submodules.outputs.submodule }}
           cd members/$submodule
-          cp ../../.github/scripts/test_hoemwork2.py .
-          pytest test_hoemwork2.py
+          cp ../../.github/scripts/test_hoemwork4.py .
+          pytest test_hoemwork4.py
 

@@ -14,7 +14,8 @@ print_separator() {
 
 print_separator "Check files change"
 # ./.github/scripts/check_files.sh
-docker exec -t -w "/mnt/root" fastapi_app .github/scripts/check_files.sh
+# docker exec -t -w "/mnt/root" fastapi_app .github/scripts/check_files.sh
+docker exec -t -w "/mnt/root" fastapi_app python .github/scripts/test_file_change.py
 
 print_separator "Install requirements"
 docker exec -t -w "/mnt/app" fastapi_app pip install -r requirements.txt
