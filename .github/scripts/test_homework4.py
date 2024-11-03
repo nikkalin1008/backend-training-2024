@@ -3,7 +3,11 @@ import pytest
 from httpx import AsyncClient, ASGITransport
 from datetime import datetime, time, timedelta
 from uuid import uuid4
-from app.main import app
+
+try:
+    from main import app  # Assuming the FastAPI application is in main.py
+except ImportError:
+    from app.main import app  # If unable to import from the main module, try importing from app.main
 
 pytestmark = pytest.mark.anyio
 
