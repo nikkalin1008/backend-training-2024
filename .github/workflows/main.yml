@@ -1,4 +1,4 @@
-name: Check File Changes
+name: File Changes Test
 
 on:
   pull_request:
