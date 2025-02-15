@@ -67,3 +67,6 @@
 [submodule "members/MING-CHUNLee"]
 	path = members/MING-CHUNLee
 	url = https://github.com/MING-CHUNLee/backend-training-2024-app.git
+[submodule "members/shawn2093"]
+	path = members/shawn2093
+	url = https://github.com/shawn2093/sdc.git
